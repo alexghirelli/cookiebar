@@ -1,6 +1,6 @@
 /*!
  * 
- *   @alexghirelli/cookiebar v0.1.2
+ *   @alexghirelli/cookiebar v0.1.3
  *   https://github.com/alexghirelli/cookiebar
  * 
  *   Copyright (c) Alex Ghirelli (https://github.com/alexghirelli)
