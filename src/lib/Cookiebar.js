@@ -1,13 +1,20 @@
+import Cookies from 'js-cookie';
 import './css/Cookiebar.scss';
 
 class Cookiebar {
   constructor(){
     // YOUTUBE NO COOKIES: https://www.youtube-nocookie.com/
 
-    this.createBar('#root', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium vero saepe delectus earum! Adipisci, ullam.', 'click');
+    this.init('#root', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium vero saepe delectus earum! Adipisci, ullam.', 'click');
   }
 
-  createBar = (target, text, action) => {
+  init = (target, text) => {
+    if (!this.checkConsent()) {
+      this.createBar(target, text);
+    }
+  }
+
+  createBar = (target, text) => {
     let targetPosition = document.querySelector(target);
     let bar = document.createElement('div');
 
@@ -21,6 +28,24 @@ class Cookiebar {
     `;
 
     targetPosition.parentNode.insertBefore( bar, targetPosition );
+  }
+
+  saveConsent = () => {
+
+  }
+
+  checkConsent = () => {
+    if (Cookies.get('cookiebar')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  restrict =() => {
+    let iframes = document.getElementsByName("iframe");
+
+    console.log(iframes)
   }
 }
 
