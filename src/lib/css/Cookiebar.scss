@@ -1,0 +1,22 @@
+.cookiebar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    background: #3d3d3d;
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    justify-content: space-between;
+
+    .text {
+        color: #fff;
+    }
+
+    &--align-top {
+        top: 0;
+    }
+
+    &--align-bottom {
+        bottom: 0;
+    }
+}
