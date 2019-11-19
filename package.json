@@ -1,6 +1,6 @@
 {
   "name": "@alexghirelli/cookiebar",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "The definitive lib for cookie law bar",
   "main": "build/index.js",
   "scripts": {
