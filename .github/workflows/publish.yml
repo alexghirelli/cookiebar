@@ -39,6 +39,6 @@ jobs:
       - name: npm publish
         run: |
           npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
-          npm run trypublish
+          npm run trypublish --access=public
         env:
             NODE_AUTH_TOKEN: ${{secrets.NODE_AUTH_TOKEN}}
