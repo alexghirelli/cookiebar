@@ -15,7 +15,10 @@ class Cookiebar {
   init = async (target, text) => {
     if (!Cookies.checkConsent()) {
       await this.createBar(target, text);
-      await document.addEventListener("DOMContentLoaded", this.selectElements);
+
+      window.addEventListener('load', function(){
+        this.selectElements()
+      }.bind(this));
     }
   }
 
@@ -37,13 +40,9 @@ class Cookiebar {
 
   selectElements = async () => {
     let elements = document.getElementsByTagName("iframe");
-    for (const element of elements) {
+    for (let element of elements) {
       await _Restriction.restrict(element);
     }
-  }
-
-  wrapAllElements = async () => {
-    
   }
 }
 
