@@ -1,10 +1,13 @@
-import { Cookies, Restriction } from './utils';
+import {
+  Cookies,
+  Restriction
+} from './utils';
 import './css/Cookiebar.scss';
 
 const _Restriction = new Restriction();
 
 class Cookiebar {
-  constructor(){
+  constructor() {
     // YOUTUBE NO COOKIES: https://www.youtube-nocookie.com/
     this.init('#root', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium vero saepe delectus earum! Adipisci, ullam.', 'click');
   }
@@ -12,7 +15,7 @@ class Cookiebar {
   init = async (target, text) => {
     if (!Cookies.checkConsent()) {
       await this.createBar(target, text);
-      await document.addEventListener("DOMContentLoaded", _Restriction.selectElements);
+      await document.addEventListener("DOMContentLoaded", this.selectElements);
     }
   }
 
@@ -29,7 +32,18 @@ class Cookiebar {
       <button class="agree-btn">Agree</button>
     `;
 
-    targetPosition.parentNode.insertBefore( bar, targetPosition );
+    targetPosition.parentNode.insertBefore(bar, targetPosition);
+  }
+
+  selectElements = async () => {
+    let elements = document.getElementsByTagName("iframe");
+    for (const element of elements) {
+      await _Restriction.restrict(element);
+    }
+  }
+
+  wrapAllElements = async () => {
+    
   }
 }
 

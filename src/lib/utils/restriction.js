@@ -1,15 +1,4 @@
 class Restriction {
-    selectElements = async () => {
-        let elements = document.getElementsByTagName("iframe");
-        for (const element of elements) {
-            await this.restrict(element);
-        }
-    }
-
-    wrapAllElements = async () => {
-
-    }
-
     restrict = async (element) => {
         let elType = element.nodeName.toLowerCase();
     
@@ -31,10 +20,7 @@ class Restriction {
             element.src = src;
         } else {
             element.removeAttribute('src');
-    
-            let img = document.createElement('img')
-            img.src = './img/placeholder.jpg';
-            element.appendChild(img);
+            element.style.display = 'none';
         }
     }
 }
