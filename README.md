@@ -8,13 +8,15 @@
 ## ⭐️ Features
 
 - Customizable bar
-- Hide third party scripts until user accepts cookies
+- Block third party scripts until user accepts cookies
 - Various agreement types (scroll, click)
 
 ## 📦 Installation
 
 ```
-TBD
+npm install @alexghirelli/cookiebar --save-dev
+or
+yarn install @alexghirelli/cookiebar
 ...
 ```
 
