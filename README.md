@@ -15,9 +15,10 @@
 
 ```
 npm install @alexghirelli/cookiebar --save-dev
-or
+
+_or_
+
 yarn install @alexghirelli/cookiebar
-...
 ```
 
 ## 💎 Customization
