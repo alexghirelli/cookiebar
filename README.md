@@ -16,7 +16,7 @@
 ```
 npm install @alexghirelli/cookiebar --save-dev
 
-_or_
+OR
 
 yarn install @alexghirelli/cookiebar
 ```
