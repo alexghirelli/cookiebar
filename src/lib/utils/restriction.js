@@ -11,7 +11,7 @@ class Restriction {
                     await this.restrictIframe(element);
                     break;
                 case 'script':
-
+                    //TODO: Implement third party scripts restriction
                     break;
                 default:
                     break;
