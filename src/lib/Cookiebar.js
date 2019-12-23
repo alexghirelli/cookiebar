@@ -1,30 +1,23 @@
 import {
   Cookies,
-  Restriction
+  Restriction,
+  Utility
 } from './utils';
 import './css/Cookiebar.scss';
 
-const _Restriction = new Restriction();
+Restriction.restrictIframes();
 
 class Cookiebar {
-  constructor() {
-    // YOUTUBE NO COOKIES: https://www.youtube-nocookie.com/
-    this.init('#root', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium vero saepe delectus earum! Adipisci, ullam.', 'click');
-  }
-
-  init = async (target, text) => {
+  // YOUTUBE NO COOKIES: https://www.youtube-nocookie.com/
+  constructor(target, text) {
     if (!Cookies.checkConsent()) {
-      await this.createBar(target, text);
-
-      window.addEventListener('load', function(){
-        this.selectElements()
-      }.bind(this));
-    }
+      this.createBar(target, text);
+    } 
   }
 
   createBar = async (target, text) => {
-    let targetPosition = document.querySelector(target);
-    let bar = document.createElement('div');
+    let targetPosition = await Utility.selectElement(target);
+    let bar = Utility.createElement();
 
     bar.className += 'cookiebar cookiebar--align-bottom';
 
@@ -35,14 +28,7 @@ class Cookiebar {
       <button class="agree-btn">Agree</button>
     `;
 
-    targetPosition.parentNode.insertBefore(bar, targetPosition);
-  }
-
-  selectElements = async () => {
-    let elements = document.getElementsByTagName("iframe");
-    for (let element of elements) {
-      await _Restriction.restrict(element);
-    }
+    await Utility.insertBefore(targetPosition, bar);
   }
 }
 
