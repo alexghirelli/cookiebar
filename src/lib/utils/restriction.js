@@ -1,31 +1,41 @@
+import * as Cookies from './cookies';
 class Restriction {
-    // restrict = async (element) => {
-    //     let elType = element.nodeName.toLowerCase();
+    restrictAll = async () => {
+        let elements = document.querySelectorAll('iframe, script');
     
-    //     switch (elType) {
-    //         case 'iframe':
-    //             await this.restrictIframe(element);
-    //             break;
-    //         default:
-    //             break;
-    //     }
-    // }
+        elements.forEach(async (element) => {
+            let elType = element.nodeName.toLowerCase();
 
-    restrictIframes = async () => {
-        let iframes = document.querySelectorAll('iframe');
+            switch (elType) {
+                case 'iframe':
+                    await this.restrictIframe(element);
+                    break;
+                case 'script':
 
-        iframes.forEach((iframe) => {
-            let src = iframe.src;
-
-            if (src.includes('youtube')) {
-                iframe.setAttribute('data-src', src);
-                src = src.replace('https://www.youtube.com', 'https://www.youtube-nocookie.com');
-                iframe.src = src;
-            } else {
-                iframe.removeAttribute('src');
-                iframe.style.display = 'none';
+                    break;
+                default:
+                    break;
             }
         });
+    }
+
+    allowAll = async () => {
+        await Cookies.saveConsent();
+    }
+
+    restrictIframe = async (el) => {
+        let iframe = el;
+
+        let src = iframe.src;
+
+        if (src.includes('youtube')) {
+            iframe.setAttribute('data-src', src);
+            src = src.replace('https://www.youtube.com', 'https://www.youtube-nocookie.com');
+            iframe.src = src;
+        } else {
+            iframe.removeAttribute('src');
+            iframe.style.display = 'none';
+        }
     }
 }
 

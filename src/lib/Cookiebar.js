@@ -5,7 +5,7 @@ import {
 } from './utils';
 import './css/Cookiebar.scss';
 
-Restriction.restrictIframes();
+Restriction.restrictAll();
 
 class Cookiebar {
   // YOUTUBE NO COOKIES: https://www.youtube-nocookie.com/
@@ -29,6 +29,13 @@ class Cookiebar {
     `;
 
     await Utility.insertBefore(targetPosition, bar);
+    await this.bindAgreeButton();
+  }
+
+  bindAgreeButton = async () => {
+    let agreeBtn = document.querySelector('.agree-btn');
+
+    agreeBtn.addEventListener('click', Restriction.allowAll);
   }
 }
 
